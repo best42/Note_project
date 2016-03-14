@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  subject: MyString
+  teacher: MyText
+  rating: 1
+  owner: MyText
+  create_note: 2016-03-14
+
+two:
+  title: MyString
+  description: MyText
+  subject: MyString
+  teacher: MyText
+  rating: 1
+  owner: MyText
+  create_note: 2016-03-14

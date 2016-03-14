@@ -1,0 +1,39 @@
+<!-- <ul id="dropdown1" class="dropdown-content">
+  <li><a class ="pure-menu-item" href="/home">Mathamatic</a></li>
+  <li class="divider"></li>
+  <li><a class ="pure-menu-item" href="/home">English</a></li>
+  <li class="divider"></li>
+  <li><a class ="pure-menu-item" href='/home'>BBA</a></li>
+  <li class="divider"></li>
+  <li><a class ="pure-menu-item" href="/home">Science</a></li>
+</ul> -->
+<%if user_signed_in? %>
+  <div class="navbar-fixed">
+      <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+          <!-- <a class="pure-menu-heading" href='/notes'>lecture Note</a> -->
+          <%= link_to "lecture Note", notes_path, class: "pure-menu-heading" %>
+          <ul class="pure-menu-list">
+              <!-- <li class="pure-menu-item pure-menu-selected"><a class="dropdown-button" href="#!" data-activates="dropdown1"> Notes <i class="fa fa-bars"></i></a></li> -->
+              <li class="pure-menu-item"><a href="/notes" class="pure-menu-link">Notes</a></li>
+              <li class="pure-menu-item"><a href='/contact' class="pure-menu-link">Contact Us</a></li>
+              <li class="pure-menu-item"><a href=""><%= link_to "Sign Out", destroy_model_session_path, method: :delete %><br></a></li>
+              <!-- <li class="pure-menu-item"><a href='/home' class="pure-menu-link">Log out</a></li> -->
+          </ul>
+      </div>
+  </div>
+
+<% else %>
+
+<div class="navbar-fixed">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href='/notes'>lecture Note</a>
+        <ul class="pure-menu-list">
+            <!-- <li class="pure-menu-item pure-menu-selected"><a class="dropdown-button" href="#!" data-activates="dropdown1"> Notes <i class="fa fa-bars"></i></a></li> -->
+            <li class="pure-menu-item"><a href="/home" class="pure-menu-link">Notes</a></li>
+            <li class="pure-menu-item"><a href='/contact' class="pure-menu-link">Contact Us</a></li>
+            <li class="pure-menu-item"><a href='/models/sign_in' class="pure-menu-link">Log in</a></li>
+        </ul>
+    </div>
+</div>
+
+<% end %>
