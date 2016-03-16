@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :comments
-  resources :images
   resources :notes
+  resources :comments
+  resources :notes do
+    resources :images
+  end
 
   resources :notes, only: [:index, :show]
 

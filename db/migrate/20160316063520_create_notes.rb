@@ -6,7 +6,7 @@ class CreateNotes < ActiveRecord::Migration
       t.string :subject
       t.text :teacher
       t.integer :rating
-      t.text :owner
+      t.references :user, index: true, foreign_key: true
       t.date :create_note
 
       t.timestamps null: false

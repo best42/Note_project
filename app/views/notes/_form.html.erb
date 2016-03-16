@@ -1,7 +1,7 @@
 <%= form_for(@note) do |f| %>
   <% if @note.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
+      <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note to be create:</h2>
 
       <ul>
       <% @note.errors.full_messages.each do |message| %>
@@ -11,35 +11,52 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :subject %><br>
-    <%= f.text_field :subject %>
-  </div>
-  <div class="field">
-    <%= f.label :teacher %><br>
-    <%= f.text_area :teacher %>
-  </div>
-  <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.number_field :rating %>
-  </div>
-  <div class="field">
-    <%= f.label :owner %><br>
-    <%= f.text_area :owner %>
-  </div>
-  <div class="field">
-    <%= f.label :create_note %><br>
-    <%= f.date_select :create_note %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row main-text-color">
+          <div class="field">
+            <%= f.label :title %><br>
+            <%= f.text_field :title %>
+          </div>
+          <div class="field">
+            <%= f.label :description %><br>
+            <%= f.text_area :description %>
+          </div>
+          <div class="field">
+            <%= f.label :subject %><br>
+            <%= f.text_field :subject %>
+          </div>
+          <div class="field">
+            <%= f.label :teacher %><br>
+            <%= f.text_area :teacher %>
+          </div>
+
+          <div>
+            <%= f.label :Date %><br>
+            <input type="date" class="datepicker"> <%= f.date_select :create_note %> </input>
+          </div>
+
+          <div class="field" accept="image/*" onchange="loadFile(event)">
+            <%= f.label :image  %><br>
+            <%= f.file_field :image %>
+            <img style="max-height: 200px;" id="output"/>
+          </div>
+          <script>
+            var loadFile = function(event) {
+              var reader = new FileReader();
+              reader.onload = function(){
+                var output = document.getElementById('output');
+                output.src = reader.result;
+              };
+              reader.readAsDataURL(event.target.files[0]);
+            };
+          </script><br>
+
+          <div class="btn waves-effect waves-light" type="submit" name="action">
+            <%= f.submit %>
+            <i class="material-icons left">+</i>
+          </div>
+        </div>
+      </div>
+    </div>
 <% end %>

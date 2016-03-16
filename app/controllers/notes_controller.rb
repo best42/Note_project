@@ -1,6 +1,26 @@
+# == Schema Information
+#
+# Table name: notes
+#
+#  id                 :integer          not null, primary key
+#  title              :string
+#  description        :text
+#  subject            :string
+#  teacher            :text
+#  rating             :integer
+#  user_id            :integer
+#  create_note        :date
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  image_file_name    :string
+#  image_content_type :string
+#  image_file_size    :integer
+#  image_updated_at   :datetime
+#
+
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+
   # GET /notes
   # GET /notes.json
   def index
@@ -25,6 +45,7 @@ class NotesController < ApplicationController
   # POST /notes.json
   def create
     @note = Note.new(note_params)
+    @note.user = current_user
 
     respond_to do |format|
       if @note.save
@@ -69,6 +90,6 @@ class NotesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
-      params.require(:note).permit(:title, :description, :subject, :teacher, :rating, :owner, :create_note)
+      params.require(:note).permit(:title, :description, :subject, :teacher, :rating, :user_id, :create_note, :image, image_attributes: [:id])
     end
 end

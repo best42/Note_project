@@ -15,8 +15,9 @@
           <ul class="pure-menu-list">
               <!-- <li class="pure-menu-item pure-menu-selected"><a class="dropdown-button" href="#!" data-activates="dropdown1"> Notes <i class="fa fa-bars"></i></a></li> -->
               <li class="pure-menu-item"><a href="/notes" class="pure-menu-link">Notes</a></li>
+              <li class="pure-menu-item"><a href="/users/edit" class="pure-menu-link">account</a></li>
               <li class="pure-menu-item"><a href='/contact' class="pure-menu-link">Contact Us</a></li>
-              <li class="pure-menu-item"><a href=""><%= link_to "Sign Out", destroy_model_session_path, method: :delete %><br></a></li>
+              <li class="pure-menu-item"><a href=""><%= link_to "Sign Out", destroy_user_session_path, method: :delete %><br></a></li>
               <!-- <li class="pure-menu-item"><a href='/home' class="pure-menu-link">Log out</a></li> -->
           </ul>
       </div>
@@ -29,9 +30,9 @@
         <a class="pure-menu-heading" href='/notes'>lecture Note</a>
         <ul class="pure-menu-list">
             <!-- <li class="pure-menu-item pure-menu-selected"><a class="dropdown-button" href="#!" data-activates="dropdown1"> Notes <i class="fa fa-bars"></i></a></li> -->
-            <li class="pure-menu-item"><a href="/home" class="pure-menu-link">Notes</a></li>
+            <li class="pure-menu-item"><a href="/notes" class="pure-menu-link">Notes</a></li>
             <li class="pure-menu-item"><a href='/contact' class="pure-menu-link">Contact Us</a></li>
-            <li class="pure-menu-item"><a href='/models/sign_in' class="pure-menu-link">Log in</a></li>
+            <li class="pure-menu-item"><a href='/users/sign_in' class="pure-menu-link">Log in</a></li>
         </ul>
     </div>
 </div>
