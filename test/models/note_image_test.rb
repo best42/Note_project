@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: images
+# Table name: note_images
 #
 #  id                 :integer          not null, primary key
 #  image_id           :integer
@@ -16,9 +16,10 @@
 #  image_updated_at   :datetime
 #
 
-class Image < ActiveRecord::Base
-  belongs_to :note
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  has_many :comments
+require 'test_helper'
+
+class NoteImageTest < ActiveSupport::TestCase
+  # test "the truth" do
+  #   assert true
+  # end
 end

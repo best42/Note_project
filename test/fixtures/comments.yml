@@ -2,22 +2,28 @@
 #
 # Table name: comments
 #
-#  id         :integer          not null, primary key
-#  content    :text
-#  note_id    :integer
-#  image_id   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  content      :text
+#  x            :integer
+#  y            :integer
+#  user_id      :integer
+#  noteimage_id :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
   content: MyText
-  note_id: 
-  image_id: 
+  x: 1
+  'y': 1
+  user_id: 
+  noteimage_id: 
 
 two:
   content: MyText
-  note_id: 
-  image_id: 
+  x: 1
+  'y': 1
+  user_id: 
+  noteimage_id: 

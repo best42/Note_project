@@ -1,6 +1,6 @@
-class CreateImages < ActiveRecord::Migration
+class CreateNoteImages < ActiveRecord::Migration
   def change
-    create_table :images do |t|
+    create_table :note_images do |t|
       t.integer :image_id
       t.integer :x
       t.integer :y
@@ -9,6 +9,6 @@ class CreateImages < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_index :images, :image_id
+    add_index :note_images, :image_id
   end
 end

@@ -11,20 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316063528) do
+ActiveRecord::Schema.define(version: 20160316091655) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
-    t.integer  "note_id"
-    t.integer  "image_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "x"
+    t.integer  "y"
+    t.integer  "user_id"
+    t.integer  "noteimage_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_index "comments", ["image_id"], name: "index_comments_on_image_id"
-  add_index "comments", ["note_id"], name: "index_comments_on_note_id"
+  add_index "comments", ["noteimage_id"], name: "index_comments_on_noteimage_id"
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
-  create_table "images", force: :cascade do |t|
+  create_table "note_images", force: :cascade do |t|
     t.integer  "image_id"
     t.integer  "x"
     t.integer  "y"
@@ -38,8 +40,8 @@ ActiveRecord::Schema.define(version: 20160316063528) do
     t.datetime "image_updated_at"
   end
 
-  add_index "images", ["image_id"], name: "index_images_on_image_id"
-  add_index "images", ["note_id"], name: "index_images_on_note_id"
+  add_index "note_images", ["image_id"], name: "index_note_images_on_image_id"
+  add_index "note_images", ["note_id"], name: "index_note_images_on_note_id"
 
   create_table "notes", force: :cascade do |t|
     t.string   "title"

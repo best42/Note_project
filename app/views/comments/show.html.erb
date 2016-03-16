@@ -6,13 +6,23 @@
 </p>
 
 <p>
-  <strong>Note:</strong>
-  <%= @comment.note %>
+  <strong>X:</strong>
+  <%= @comment.x %>
 </p>
 
 <p>
-  <strong>Image:</strong>
-  <%= @comment.image %>
+  <strong>Y:</strong>
+  <%= @comment.y %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @comment.user %>
+</p>
+
+<p>
+  <strong>Noteimage:</strong>
+  <%= @comment.noteimage %>
 </p>
 
 <%= link_to 'Edit', edit_comment_path(@comment) %> |

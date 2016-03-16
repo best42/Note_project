@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: images
+# Table name: note_images
 #
 #  id                 :integer          not null, primary key
 #  image_id           :integer
@@ -16,10 +16,5 @@
 #  image_updated_at   :datetime
 #
 
-require 'test_helper'
-
-class ImageTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+module NoteImagesHelper
 end

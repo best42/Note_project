@@ -2,12 +2,14 @@
 #
 # Table name: comments
 #
-#  id         :integer          not null, primary key
-#  content    :text
-#  note_id    :integer
-#  image_id   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  content      :text
+#  x            :integer
+#  y            :integer
+#  user_id      :integer
+#  noteimage_id :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 
 require 'test_helper'
@@ -30,7 +32,7 @@ class CommentsControllerTest < ActionController::TestCase
 
   test "should create comment" do
     assert_difference('Comment.count') do
-      post :create, comment: { content: @comment.content, image_id: @comment.image_id, note_id: @comment.note_id }
+      post :create, comment: { content: @comment.content, noteimage_id: @comment.noteimage_id, user_id: @comment.user_id, x: @comment.x, y: @comment.y }
     end
 
     assert_redirected_to comment_path(assigns(:comment))
@@ -47,7 +49,7 @@ class CommentsControllerTest < ActionController::TestCase
   end
 
   test "should update comment" do
-    patch :update, id: @comment, comment: { content: @comment.content, image_id: @comment.image_id, note_id: @comment.note_id }
+    patch :update, id: @comment, comment: { content: @comment.content, noteimage_id: @comment.noteimage_id, user_id: @comment.user_id, x: @comment.x, y: @comment.y }
     assert_redirected_to comment_path(assigns(:comment))
   end
 

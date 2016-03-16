@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  resources :notes
   resources :comments
+  resources :comments
+  resources :note_images
+  resources :notes
   resources :notes do
-    resources :images
-  end
+    end
 
   resources :notes, only: [:index, :show]
 
@@ -44,8 +45,7 @@ Rails.application.routes.draw do
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end

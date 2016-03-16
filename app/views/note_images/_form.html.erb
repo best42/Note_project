@@ -1,10 +1,10 @@
-<%= form_for(@image) do |f| %>
-  <% if @image.errors.any? %>
+<%= form_for(@note_image) do |f| %>
+  <% if @note_image.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+      <h2><%= pluralize(@note_image.errors.count, "error") %> prohibited this note_image from being saved:</h2>
 
       <ul>
-      <% @image.errors.full_messages.each do |message| %>
+      <% @note_image.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>

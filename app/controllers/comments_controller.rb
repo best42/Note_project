@@ -2,12 +2,14 @@
 #
 # Table name: comments
 #
-#  id         :integer          not null, primary key
-#  content    :text
-#  note_id    :integer
-#  image_id   :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  content      :text
+#  x            :integer
+#  y            :integer
+#  user_id      :integer
+#  noteimage_id :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 
 class CommentsController < ApplicationController
@@ -81,6 +83,6 @@ class CommentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:content, :note_id, :image_id)
+      params.require(:comment).permit(:content, :x, :y, :user_id, :noteimage_id)
     end
 end
