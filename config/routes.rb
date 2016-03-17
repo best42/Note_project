@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   resources :comments
-  resources :comments
-  resources :note_images
-  resources :notes
   resources :notes do
+    resources :note_images
     end
 
   resources :notes, only: [:index, :show]
+
+  get '/contact' => 'page#contact'
+  get '/form' => 'page#form'
 
   devise_for :users
   root 'notes#index'

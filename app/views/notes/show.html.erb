@@ -35,12 +35,58 @@
   <%= @note.create_note %>
 </p>
 
-<p>
-  <strong>Image note:</strong>
-  <p></p>
-  <img style="max-height 400px;" <%= image_tag @note.image.url %>
-</p>
+<div class="slider" style="height: 800px;">
+    <ul class="slides">
+        <% @note_images.each do |note_image| %>
+          <li>
+            <script>
+               console.log(<%=note_image.id%>)
+            </script>
+            <%= image_tag note_image.image.url, class: "materialboxed" %>
+          </li>
+        <% end %>
+    </ul>
+</div>
 
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Destroy', @note, method: :delete, data: { confirm: 'Are you sure?' } %>
+<div class="container portfolio">
+  <div class="row">
+    <div class="col s12 m12 l12 portfolio-holder">
+      <% @note_images.each do |note_image| %>
+        <%= image_tag note_image.image.url, class: "materialboxed", style:"height:400px;width:500px;" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<div class="carousel">
+  <% @note_images.each do |note_image| %>
+      <li>
+        <%= image_tag note_image.image.url, class: "carousel-item"%>
+      </li>
+  <% end %>
+</div>
+
+
+<% if current_user.id == @note.user.id %>
+  <%= link_to 'Edit', edit_note_path(@note) %> |
+  <%= link_to 'Destroy', @note, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
+<p></p>
 <%= link_to 'Back', notes_path %>
+
+<% content_for :js do %>
+<script>
+  $(document).ready(function(){
+    $('.slider').slider({full_width: true});
+  });
+
+  $(document).ready(function(){
+    $('.materialboxed').materialbox();
+  });
+
+  $(document).ready(function(){
+    $('.carousel').carousel();
+  });
+</script>
+<% end %>

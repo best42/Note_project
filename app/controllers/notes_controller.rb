@@ -25,20 +25,24 @@ class NotesController < ApplicationController
   # GET /notes.json
   def index
     @notes = Note.all
+    @note_images = NoteImage.all
   end
 
   # GET /notes/1
   # GET /notes/1.json
   def show
+    @note_images = NoteImage.where(note_id: @note.id)
   end
 
   # GET /notes/new
   def new
     @note = Note.new
+    @note_image = NoteImage.new
   end
 
   # GET /notes/1/edit
   def edit
+    @note_images = NoteImage.where(note_id: @note.id)
   end
 
   # POST /notes
@@ -49,6 +53,9 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
+        @note_image = NoteImage.new(note_image_params)
+        @note_image.note_id = @note.id
+        @note_image.save
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
@@ -91,5 +98,9 @@ class NotesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
       params.require(:note).permit(:title, :description, :subject, :teacher, :rating, :user_id, :create_note, :image, image_attributes: [:id])
+    end
+
+    def note_image_params
+      params.require(:note).permit(:image_id, :x, :y, :content, :note_id, :image)
     end
 end

@@ -36,21 +36,18 @@
             <input type="date" class="datepicker"> <%= f.date_select :create_note %> </input>
           </div>
 
+
           <div class="field" accept="image/*" onchange="loadFile(event)">
             <%= f.label :image  %><br>
-            <%= f.file_field :image %>
+            <%= f.file_field :image, multiple: true, name: "note[image]" %>
+            <script>
+              console.log(note[image])
+            </script>
+            <img style="max-height: 200px;" id="output"/>
+            <img style="max-height: 200px;" id="output"/>
+            <img style="max-height: 200px;" id="output"/>
             <img style="max-height: 200px;" id="output"/>
           </div>
-          <script>
-            var loadFile = function(event) {
-              var reader = new FileReader();
-              reader.onload = function(){
-                var output = document.getElementById('output');
-                output.src = reader.result;
-              };
-              reader.readAsDataURL(event.target.files[0]);
-            };
-          </script><br>
 
           <div class="btn waves-effect waves-light" type="submit" name="action">
             <%= f.submit %>
@@ -60,3 +57,14 @@
       </div>
     </div>
 <% end %>
+
+<script>
+  var loadFile = function(event) {
+    var reader = new FileReader();
+    reader.onload = function(){
+      var output = document.getElementById('output');
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  };
+</script><br>

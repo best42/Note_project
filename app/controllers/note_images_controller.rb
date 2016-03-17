@@ -18,6 +18,7 @@
 
 class NoteImagesController < ApplicationController
   before_action :set_note_image, only: [:show, :edit, :update, :destroy]
+  before_action :set_note
 
   # GET /note_images
   # GET /note_images.json
@@ -43,11 +44,12 @@ class NoteImagesController < ApplicationController
   # POST /note_images.json
   def create
     @note_image = NoteImage.new(note_image_params)
+    @note_image.note_id = @note.id
 
     respond_to do |format|
       if @note_image.save
-        format.html { redirect_to @note_image, notice: 'Note image was successfully created.' }
-        format.json { render :show, status: :created, location: @note_image }
+        format.html { redirect_to edit_note_path(@note), notice: 'Note image was successfully created.' }
+        # format.json { render :show, status: :created, location: @note_image }
       else
         format.html { render :new }
         format.json { render json: @note_image.errors, status: :unprocessable_entity }
@@ -84,9 +86,12 @@ class NoteImagesController < ApplicationController
     def set_note_image
       @note_image = NoteImage.find(params[:id])
     end
+    def set_note
+      @note = Note.find(params[:note_id])
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_image_params
-      params.require(:note_image).permit(:image_id, :x, :y, :content, :note_id)
+      params.require(:note_image).permit(:image_id, :x, :y, :content, :note_id, :image)
     end
 end
