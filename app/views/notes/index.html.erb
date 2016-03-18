@@ -17,8 +17,6 @@
         <div class="card-image" class="img_fix">
           <script>
             console.log('aa')
-            console.log(<%= note.id %>)
-            console.log('aa')
           </script>
           <img style="max-height 600px;" <%= image_tag note.image.url %>
           <span class="card-title"><%= note.title %></span>
@@ -39,7 +37,7 @@
 
     </div>
   <% end %>
-<br>
+</div> <br>
 
 <%if user_signed_in? %>
 <div class="center">

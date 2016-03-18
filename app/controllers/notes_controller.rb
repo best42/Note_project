@@ -26,6 +26,7 @@ class NotesController < ApplicationController
   def index
     @notes = Note.all
     @note_images = NoteImage.all
+    # raise "#{@note_images}"
   end
 
   def search
@@ -44,6 +45,7 @@ class NotesController < ApplicationController
       @avg_review = 0
     else
       @avg_review = @comments.average(:rating).round(2)
+      @note.rating = @avg_review
     end
   end
 
@@ -67,6 +69,8 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.save
         if params[:images]
+          @note.image = params[:images].first
+          @note.save
           params[:images].each { |ima|
             @note_image = NoteImage.create(image: ima, note_id: @note.id)
             @note_image.save
@@ -101,7 +105,20 @@ class NotesController < ApplicationController
   # DELETE /notes/1
   # DELETE /notes/1.json
   def destroy
+    noteId = @note.id
     @note.destroy
+    @note_images = NoteImage.where(note_id: noteId)
+    first_image = @note_images.first
+    @note_images.each do |note_image|
+      note_image.destroy
+      @comments = Comment.where(note_image_id: first_image)
+      if @comments != nil?
+        @comments.each do |comment|
+          comment.destroy
+        end
+      end
+    end
+
     respond_to do |format|
       format.html { redirect_to notes_url, notice: 'Note was successfully destroyed.' }
       format.json { head :no_content }

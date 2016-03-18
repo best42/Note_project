@@ -74,7 +74,13 @@ class NoteImagesController < ApplicationController
   # DELETE /note_images/1
   # DELETE /note_images/1.json
   def destroy
+    imageId = @note_image.id
     @note_image.destroy
+    @comments = Comments.where(note_image_id: imageId)
+    @comments.each do |comment|
+      comment.destroy
+    end
+    # @note_image.destroy
     respond_to do |format|
       format.html { redirect_to note_images_url, notice: 'Note image was successfully destroyed.' }
       format.json { head :no_content }

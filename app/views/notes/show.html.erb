@@ -38,10 +38,8 @@
         <% @note_images.each do |note_image| %>
           <li>
             <script>
-               console.log(<%=note_image.id%>)
-               console.log('kkk')
-               console.log(<%=%>)
-            </script>
+              console.log(<%=note_image.id%>)
+\           </script>
             <%= image_tag note_image.image.url, class: "materialboxed" %>
           </li>
         <% end %>
@@ -52,9 +50,7 @@
   <div class="row">
     <div class="col s12 m12 l12 portfolio-holder">
       <script>
-        console.log('aa')
         console.log(<%= @first_image.id %>)
-        console.log('aa')
       </script>
       <% @note_images.each do |note_image| %>
         <%= image_tag note_image.image.url, class: "materialboxed", style:"height:400px;width:500px;" %>
@@ -82,6 +78,7 @@
         <div class="star-rating" data-score= <%= comment.rating %> ></div>
         <p><%= comment.user.username %></p>
       </div>
+      <li class="divider"></li>
     <% end %>
   <% end %>
 </div><br>
