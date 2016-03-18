@@ -1,4 +1,4 @@
-ruby "2.2.1"
+ruby "2.1.5"
 #ruby-gemset=Note_project
 source 'https://rubygems.org'
 
