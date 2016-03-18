@@ -2,7 +2,7 @@
 lock '3.4.0'
 
 set :application, 'Note_project'
-set :repo_url, 'git@github.com:best42/project2-note-project.git'
+set :repo_url, 'git@github.com:best42/Note_project.git'
 set :rvm_ruby_version, '2.1.5@Note_project'
 set :deploy_to, '/home/best42/Note_project'
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
