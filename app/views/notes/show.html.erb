@@ -38,9 +38,12 @@
 <div class="slider" style="height: 800px;">
     <ul class="slides">
         <% @note_images.each do |note_image| %>
+          <% var a = note_image.id %>
           <li>
             <script>
                console.log(<%=note_image.id%>)
+               console.log('kkk')
+               console.log(<%=%>)
             </script>
             <%= image_tag note_image.image.url, class: "materialboxed" %>
           </li>

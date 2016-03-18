@@ -9,7 +9,7 @@
       <th>X</th>
       <th>Y</th>
       <th>User</th>
-      <th>Noteimage</th>
+      <th>rating</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -20,8 +20,8 @@
         <td><%= comment.content %></td>
         <td><%= comment.x %></td>
         <td><%= comment.y %></td>
-        <td><%= comment.user %></td>
-        <td><%= comment.noteimage %></td>
+        <td><%= comment.user.username %></td>
+        <td><%= comment.rating %></td>
         <td><%= link_to 'Show', comment %></td>
         <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
         <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>

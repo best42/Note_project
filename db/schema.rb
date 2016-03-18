@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160316091655) do
+ActiveRecord::Schema.define(version: 20160318100836) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160316091655) do
     t.integer  "noteimage_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "rating"
   end
 
   add_index "comments", ["noteimage_id"], name: "index_comments_on_noteimage_id"

@@ -1,4 +1,4 @@
-<%= form_for(@note) do |f| %>
+<%= form_for @note, html: { multipart: true } do |f| %>
   <% if @note.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note to be create:</h2>
@@ -37,17 +37,15 @@
           </div>
 
 
-          <div class="field" accept="image/*" onchange="loadFile(event)">
+          <div class="field">
             <%= f.label :image  %><br>
-            <%= f.file_field :image, multiple: true, name: "note[image]" %>
-            <script>
-              console.log(note[image])
-            </script>
-            <img style="max-height: 200px;" id="output"/>
-            <img style="max-height: 200px;" id="output"/>
-            <img style="max-height: 200px;" id="output"/>
-            <img style="max-height: 200px;" id="output"/>
-          </div>
+            <%= file_field_tag "images[]", type: :file, multiple: true, id: "fileupload" %>
+          </div><br>
+
+          <input type="button" id="add_more" value="Add More Files"/><br>
+
+          <div id="dvPreview">
+          </div><br>
 
           <div class="btn waves-effect waves-light" type="submit" name="action">
             <%= f.submit %>
@@ -59,12 +57,47 @@
 <% end %>
 
 <script>
-  var loadFile = function(event) {
-    var reader = new FileReader();
-    reader.onload = function(){
-      var output = document.getElementById('output');
-      output.src = reader.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  };
+//To add new input file field dynamically, on click of "Add More Files" button below function will be executed
+
+$('#add_more').click(function() {
+    $(this).before($("<div/>", {id: 'filediv'}).fadeIn('slow').append(
+            $("<input/>", {name: 'images[]', type: 'file', multiple: true, id: 'fileupload'}),
+            $("<br/><br/>")
+            ));
+    $(this).before($("<div/>", {id: 'dvPreview'})
+            );
+});
 </script><br>
+
+<script language="javascript" type="text/javascript">
+window.onload = function () {
+    var fileUpload = document.getElementById("fileupload");
+    fileUpload.onchange = function () {
+        if (typeof (FileReader) != "undefined") {
+            var dvPreview = document.getElementById("dvPreview");
+            dvPreview.innerHTML = "";
+            var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+            for (var i = 0; i < fileUpload.files.length; i++) {
+                var file = fileUpload.files[i];
+                if (regex.test(file.name.toLowerCase())) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var img = document.createElement("IMG");
+                        img.height = "200";
+                        img.width = "200";
+                        img.src = e.target.result;
+                        dvPreview.appendChild(img);
+                    }
+                    reader.readAsDataURL(file);
+                } else {
+                    alert(file.name + " is not a valid image file.");
+                    dvPreview.innerHTML = "";
+                    return false;
+                }
+            }
+        } else {
+            alert("This browser does not support HTML5 FileReader.");
+        }
+    }
+};
+</script>

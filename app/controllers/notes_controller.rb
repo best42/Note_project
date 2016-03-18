@@ -28,6 +28,11 @@ class NotesController < ApplicationController
     @note_images = NoteImage.all
   end
 
+  def search
+    @notes = Note.all
+    @note_images = NoteImage.all
+  end
+
   # GET /notes/1
   # GET /notes/1.json
   def show
@@ -53,9 +58,15 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        @note_image = NoteImage.new(note_image_params)
-        @note_image.note_id = @note.id
-        @note_image.save
+        if params[:images]
+          params[:images].each { |ima|
+            @note_image = NoteImage.create(image: ima, note_id: @note.id)
+            @note_image.save
+          }
+        end
+        # @note_image = NoteImage.new(note_image_params)
+        # @note_image.note_id = @note.id
+        # @note_image.save
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else

@@ -1,40 +1,54 @@
-<!-- <ul id="dropdown1" class="dropdown-content">
-  <li><a class ="pure-menu-item" href="/home">Mathamatic</a></li>
-  <li class="divider"></li>
-  <li><a class ="pure-menu-item" href="/home">English</a></li>
-  <li class="divider"></li>
-  <li><a class ="pure-menu-item" href='/home'>BBA</a></li>
-  <li class="divider"></li>
-  <li><a class ="pure-menu-item" href="/home">Science</a></li>
-</ul> -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="/notes">Mathamatic</a></li>
+  <li><a href="/notes">English</a></li>
+  <li><a href='/notes'>BBA</a></li>
+  <li><a href="/notes">Science</a></li>
+</ul>
+
 <%if user_signed_in? %>
   <div class="navbar-fixed">
-      <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-          <!-- <a class="pure-menu-heading" href='/notes'>lecture Note</a> -->
-          <%= link_to "lecture Note", notes_path, class: "pure-menu-heading" %>
-          <ul class="pure-menu-list">
-              <!-- <li class="pure-menu-item pure-menu-selected"><a class="dropdown-button" href="#!" data-activates="dropdown1"> Notes <i class="fa fa-bars"></i></a></li> -->
-              <li class="pure-menu-item"><a href="/notes" class="pure-menu-link">Notes</a></li>
-              <li class="pure-menu-item"><a href="/users/edit" class="pure-menu-link">account</a></li>
-              <li class="pure-menu-item"><a href='/contact' class="pure-menu-link">Contact Us</a></li>
-              <li class="pure-menu-item"><a href=""><%= link_to "Sign Out", destroy_user_session_path, method: :delete %><br></a></li>
-              <!-- <li class="pure-menu-item"><a href='/home' class="pure-menu-link">Log out</a></li> -->
-          </ul>
-      </div>
+  <nav>
+    <div class="nav-wrapper">
+      <%= link_to "lecture Note", notes_path, class: "brand-logo" %>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/notes"><i class="material-icons">search</i></a></li>
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Note<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="/users/edit">account</a></li>
+        <li><a href="/contact">Contact Us</a></li>
+        <li><a href=""><%= link_to "Sign Out", destroy_user_session_path, method: :delete %><br></a></li>
+      </ul>
+    </div>
+  </nav>
   </div>
 
 <% else %>
 
 <div class="navbar-fixed">
-    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-        <a class="pure-menu-heading" href='/notes'>lecture Note</a>
-        <ul class="pure-menu-list">
-            <!-- <li class="pure-menu-item pure-menu-selected"><a class="dropdown-button" href="#!" data-activates="dropdown1"> Notes <i class="fa fa-bars"></i></a></li> -->
-            <li class="pure-menu-item"><a href="/notes" class="pure-menu-link">Notes</a></li>
-            <li class="pure-menu-item"><a href='/contact' class="pure-menu-link">Contact Us</a></li>
-            <li class="pure-menu-item"><a href='/users/sign_in' class="pure-menu-link">Log in</a></li>
-        </ul>
-    </div>
+<nav>
+  <div class="nav-wrapper">
+    <%= link_to "lecture Note", notes_path, class: "brand-logo" %>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="/notes"><i class="material-icons">search</i></a></li>
+      <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Note<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="/contact">Contact Us</a></li>
+      <li><a href="/users/sign_in">Log in</a></li>
+    </ul>
+  </div>
+</nav>
 </div>
 
 <% end %>
+
+<script>
+  $(document).ready( function () {
+    $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: 0, // Spacing from edge
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    });
+  } );
+</script>

@@ -13,3 +13,5 @@ rails g paperclip NoteImage image
 # rails d scaffold Comment
 
 # rails generate devise:views
+
+rails g migration AddTypeToComment rating:integer

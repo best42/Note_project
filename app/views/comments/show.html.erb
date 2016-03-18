@@ -17,12 +17,17 @@
 
 <p>
   <strong>User:</strong>
-  <%= @comment.user %>
+  <%= @comment.user.username %>
 </p>
 
 <p>
   <strong>Noteimage:</strong>
   <%= @comment.noteimage %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @comment.rating %>
 </p>
 
 <%= link_to 'Edit', edit_comment_path(@comment) %> |

@@ -10,10 +10,13 @@
 #  noteimage_id :integer
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  rating       :integer
 #
 
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only:[:new, :edit, :create, :update, :destroy]
+  # before_action :set_note_image
 
   # GET /comments
   # GET /comments.json
@@ -39,6 +42,8 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
+    @comment.user = current_user
+    # @comment.noteimage_id = @note_image.id
 
     respond_to do |format|
       if @comment.save
@@ -80,9 +85,12 @@ class CommentsController < ApplicationController
     def set_comment
       @comment = Comment.find(params[:id])
     end
+    # def set_note_image
+    #   @note_image = NoteImage.find(params[:id])
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:content, :x, :y, :user_id, :noteimage_id)
+      params.require(:comment).permit(:content, :x, :y, :user_id, :rating, :noteimage_id)
     end
 end

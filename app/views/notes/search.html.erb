@@ -1,0 +1,33 @@
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Subject</th>
+            <th>Teacher</th>
+            <th>Rating</th>
+            <th>Owner</th>
+            <th>Preview</th>
+        </tr>
+    </thead>
+    <tbody>
+      <% @notes.each do |note| %>
+        <tr>
+          <td><%= note.title %></td>
+          <td><%= note.subject %></td>
+          <td><%= note.teacher %></td>
+          <td><%= note.rating %></td>
+          <td><%= note.user.username %></td>
+          <td><%= link_to 'Show', note_path(note) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>
+
+<script>
+  $(document).ready( function () {
+      $('#table_id').DataTable();
+  } );
+  $(document).ready(function() {
+    $(".js-example-basic-single").select2();
+  });
+</script>s

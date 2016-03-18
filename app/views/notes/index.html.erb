@@ -1,3 +1,15 @@
+<div class="center">
+  <div class="row">
+    <br>
+    <div class="col s6">
+      <img class="col-xs-6" src="https://activerain-store.s3.amazonaws.com/image_store/uploads/7/7/0/3/2/ar134783823023077.jpg" class="responsive-img" style="max-height: 300px;"/>
+    </div>
+    <div class="col s6">
+      <h3 class="col-xs-6">List of Notes</h3>
+    </div>
+  </div>
+</div>
+
 <div class="row">
   <% @notes.each do |note| %>
     <div class="col s12 m6">
@@ -10,22 +22,28 @@
           <p>Title: <%= note.title %></p>
           <p>Subject: <%= note.subject %></p>
           <p>Teacher: <%= note.teacher %></p>
-          <p class="text-right">Owner: <%= note.user.username %></p>
+          <p class="right-align">Owner: <%= note.user.username %></p>
         </div>
         <div class="card-action">
           <%= link_to "Read More", note %>
+          <a class ="left-align" href=""><%= note.user.username %></a>
+          <!-- <p class="right-align"> <%= note.user.username %></p> -->
           <!-- <a class ="blue-text text-darken-2" href="">Read More</a> -->
         </div>
       </div>
 
     </div>
   <% end %>
-
 <br>
-</div>
 
 <%if user_signed_in? %>
 <div class="center">
   <a class="waves-effect waves-light btn-large" <%= link_to 'New Note', new_note_path %></a>
 </div>
 <% end %>
+
+<script>
+  $(document).ready( function () {
+      $('#table_id').DataTable();
+  } );
+</script>
