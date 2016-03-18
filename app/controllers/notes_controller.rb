@@ -37,6 +37,14 @@ class NotesController < ApplicationController
   # GET /notes/1.json
   def show
     @note_images = NoteImage.where(note_id: @note.id)
+    @first_image = NoteImage.where(note_id: @note.id).first
+    @comments = Comment.where(noteimage_id: @first_image.id).order("created_at DESC")
+
+    if @comments.blank?
+      @avg_review = 0
+    else
+      @avg_review = @comments.average(:rating).round(2)
+    end
   end
 
   # GET /notes/new

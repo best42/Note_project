@@ -1,4 +1,4 @@
-<%= form_for(@comment) do |f| %>
+<%= form_for [@note,@note_image,@comment], html: { multipart: true } do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -24,10 +24,16 @@
     <%= f.number_field :y %>
   </div>
   <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.number_field :rating %>
+    <div id="star-rating"></div>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<script>
+  $('#star-rating').raty({
+    path: '/assets/',
+    scoreName: 'comment[rating]'
+  });
+</script>

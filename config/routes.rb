@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :comments
   resources :notes do
-    resources :note_images
+    resources :note_images do
+      resources :comments, except: [:index, :show]
     end
+  end
 
   resources :notes, only: [:index, :show]
 

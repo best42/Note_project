@@ -9,6 +9,7 @@
       <th>X</th>
       <th>Y</th>
       <th>User</th>
+      <th>ImageID</th>
       <th>rating</th>
       <th colspan="3"></th>
     </tr>
@@ -21,6 +22,7 @@
         <td><%= comment.x %></td>
         <td><%= comment.y %></td>
         <td><%= comment.user.username %></td>
+        <td><%= comment.image_id %></td>
         <td><%= comment.rating %></td>
         <td><%= link_to 'Show', comment %></td>
         <td><%= link_to 'Edit', edit_comment_path(comment) %></td>

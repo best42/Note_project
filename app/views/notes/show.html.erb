@@ -20,10 +20,8 @@
   <%= @note.teacher %>
 </p>
 
-<p>
-  <strong>Rating:</strong>
-  <%= @note.rating %>
-</p>
+<div class="star-rating" data-score= <%= @avg_review %> ></div>
+<em><%= "#{@comments.length} reviews" %></em>
 
 <p>
   <strong>User:</strong>
@@ -38,7 +36,6 @@
 <div class="slider" style="height: 800px;">
     <ul class="slides">
         <% @note_images.each do |note_image| %>
-          <% var a = note_image.id %>
           <li>
             <script>
                console.log(<%=note_image.id%>)
@@ -54,6 +51,11 @@
 <div class="container portfolio">
   <div class="row">
     <div class="col s12 m12 l12 portfolio-holder">
+      <script>
+        console.log('aa')
+        console.log(<%= @first_image.id %>)
+        console.log('aa')
+      </script>
       <% @note_images.each do |note_image| %>
         <%= image_tag note_image.image.url, class: "materialboxed", style:"height:400px;width:500px;" %>
       <% end %>
@@ -68,8 +70,23 @@
         <%= image_tag note_image.image.url, class: "carousel-item"%>
       </li>
   <% end %>
-</div>
+</div><br>
 
+<div class="col-md-7 col-md-offset-1">
+  <% if @comments.blank? %>
+   <h3>No comments.</h3>
+  <% else %>
+    <% @comments.each do |comment| %>
+      <div class="reviews">
+        <p><%= comment.content %></p>
+        <div class="star-rating" data-score= <%= comment.rating %> ></div>
+        <p><%= comment.user.username %></p>
+      </div>
+    <% end %>
+  <% end %>
+</div><br>
+
+<%= link_to 'Add Comment', new_note_note_image_comment_path(@note,@first_image) %>
 
 <% if current_user.id == @note.user.id %>
   <%= link_to 'Edit', edit_note_path(@note) %> |
@@ -91,5 +108,14 @@
   $(document).ready(function(){
     $('.carousel').carousel();
   });
+
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function() {
+          return $(this).attr('data-score');
+    }
+  });
 </script>
+
 <% end %>
