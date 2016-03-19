@@ -24,6 +24,7 @@ class Note < ActiveRecord::Base
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   has_many :images
   accepts_nested_attributes_for :images
+  searchkick
 
   validates :title, presence: true
   validates :subject, presence: true

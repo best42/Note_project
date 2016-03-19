@@ -1,4 +1,4 @@
-ruby "2.1.5"
+ruby "2.2.1"
 #ruby-gemset=Note_project
 source 'https://rubygems.org'
 
@@ -27,14 +27,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "paperclip", "~> 4.3"
 
+gem 'searchkick'
+
 gem 'devise'
 
 gem 'pg'
-
-gem 'capistrano', '~> 3.4.0'
-gem 'capistrano-rails'
-gem 'capistrano-rvm'
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

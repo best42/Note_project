@@ -26,6 +26,16 @@ class NotesController < ApplicationController
   def index
     @notes = Note.all
     @note_images = NoteImage.all
+    if params[:search]
+      @noteSearch = Note.search(params[:search])
+      if @noteSearch.hits == []
+        @noteData = "none"
+      else
+        @noteData = @noteSearch
+      end
+    else
+      @noteData = Note.all
+    end
     # raise "#{@note_images}"
   end
 
@@ -46,6 +56,7 @@ class NotesController < ApplicationController
     else
       @avg_review = @comments.average(:rating).round(2)
       @note.rating = @avg_review
+      @note.save
     end
   end
 

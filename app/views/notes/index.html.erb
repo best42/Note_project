@@ -11,33 +11,37 @@
 </div>
 
 <div class="row">
-  <% @notes.each do |note| %>
-    <div class="col s12 m6">
-      <div class="card medium">
-        <div class="card-image" class="img_fix">
-          <script>
-            console.log('aa')
-          </script>
-          <img style="max-height 600px;" <%= image_tag note.image.url %>
-          <span class="card-title"><%= note.title %></span>
-        </div>
-        <div class="card-content">
-          <p>Title: <%= note.title %></p>
-          <p>Subject: <%= note.subject %></p>
-          <p>Teacher: <%= note.teacher %></p>
-          <p class="right-align">Owner: <%= note.user.username %></p>
-        </div>
-        <div class="card-action">
-          <%= link_to "Read More", note %>
-          <a class ="left-align" href=""><%= note.user.username %></a>
-          <!-- <p class="right-align"> <%= note.user.username %></p> -->
-          <!-- <a class ="blue-text text-darken-2" href="">Read More</a> -->
+  <% if @noteData == "none" %>
+    <h1>No Result</h1>
+  <% else %>
+    <% @noteData.each do |note| %>
+      <div class="col s12 m6">
+        <div class="card large">
+          <div class="card-image" class="img_fix">
+            <script>
+              console.log('aa')
+            </script>
+            <img style="max-height 600px;" <%= image_tag note.image.url %>
+            <span class="card-title"><%= note.title %></span>
+          </div>
+          <div class="card-content">
+            <p>Title: <%= note.title %></p>
+            <p>Subject: <%= note.subject %></p>
+            <p>Teacher: <%= note.teacher %></p>
+            <p class="right-align">Owner: <%= note.user.username %></p>
+          </div>
+          <div class="card-action">
+            <%= link_to "Read More", note %>
+            <a class="star-rating" data-score= <%= note.rating %> ></a>
+            <!-- <p class="right-align"> <%= note.user.username %></p> -->
+            <!-- <a class ="blue-text text-darken-2" href="">Read More</a> -->
+          </div>
         </div>
       </div>
-
-    </div>
+    <% end %>
   <% end %>
 </div> <br>
+
 
 <%if user_signed_in? %>
 <div class="center">
@@ -48,5 +52,12 @@
 <script>
   $(document).ready( function () {
       $('#table_id').DataTable();
-  } );
+  });
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function() {
+          return $(this).attr('data-score');
+    }
+  });
 </script>
