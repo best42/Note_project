@@ -9,5 +9,6 @@ class CreateComments < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_foreign_key :comments, :notes, column: :noteimage_id
   end
 end
