@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20160318100836) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "x"
@@ -24,8 +27,8 @@ ActiveRecord::Schema.define(version: 20160318100836) do
     t.integer  "rating"
   end
 
-  add_index "comments", ["noteimage_id"], name: "index_comments_on_noteimage_id"
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id"
+  add_index "comments", ["noteimage_id"], name: "index_comments_on_noteimage_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "note_images", force: :cascade do |t|
     t.integer  "image_id"
@@ -41,8 +44,8 @@ ActiveRecord::Schema.define(version: 20160318100836) do
     t.datetime "image_updated_at"
   end
 
-  add_index "note_images", ["image_id"], name: "index_note_images_on_image_id"
-  add_index "note_images", ["note_id"], name: "index_note_images_on_note_id"
+  add_index "note_images", ["image_id"], name: "index_note_images_on_image_id", using: :btree
+  add_index "note_images", ["note_id"], name: "index_note_images_on_note_id", using: :btree
 
   create_table "notes", force: :cascade do |t|
     t.string   "title"
@@ -60,7 +63,7 @@ ActiveRecord::Schema.define(version: 20160318100836) do
     t.datetime "image_updated_at"
   end
 
-  add_index "notes", ["user_id"], name: "index_notes_on_user_id"
+  add_index "notes", ["user_id"], name: "index_notes_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -78,7 +81,7 @@ ActiveRecord::Schema.define(version: 20160318100836) do
     t.string   "username"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
