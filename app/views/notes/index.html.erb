@@ -11,10 +11,10 @@
 </div>
 
 <div class="row">
-  <% if @noteData == "none" %>
+  <% if @noteSearch.blank? %>
     <h1>No Result</h1>
   <% else %>
-    <% @noteData.each do |note| %>
+    <% @noteSearch.each do |note| %>
       <div class="col s12 m6">
         <div class="card large">
           <div class="card-image" class="img_fix">
@@ -41,6 +41,7 @@
     <% end %>
   <% end %>
 </div> <br>
+
 
 
 <%if user_signed_in? %>

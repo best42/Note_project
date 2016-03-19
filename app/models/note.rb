@@ -25,6 +25,14 @@ class Note < ActiveRecord::Base
   has_many :note_images
   searchkick
 
+  def self.search(search)
+    if search
+      where('title LIKE ?', "%#{search}")
+    else
+      all
+    end
+  end
+
   validates :title, presence: true
   validates :subject, presence: true
   validates :teacher, presence: true

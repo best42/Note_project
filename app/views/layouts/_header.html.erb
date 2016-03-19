@@ -10,18 +10,26 @@
   <nav>
     <div class="nav-wrapper">
       <%= link_to "lecture Note", notes_path, class: "brand-logo" %>
+
       <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li>
-        <!-- <div class="form-group"> -->
-          <!-- <div class="search-wrapper card" action="/notes" method="get"> -->
+
+        <!-- <li>
           <form action="/notes" method="get">
             <input type="text" class="form-control" name="search" placeholder="find notes...">
             <button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i>
             </button>
-          </form>
+          </form> -->
+        <!-- <div class="form-group"> -->
+          <!-- <div class="search-wrapper card" action="/notes" method="get"> -->
+
         <!-- </div> -->
-        </li>
+      <li>
+        <form action="/notes" method="get">
+          <li><input type="text" class="form-control" name="search" placeholder="find notes..."></li>
+          <li><button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></li>
+        </form>
+      </li>
         <!-- <li><a type="submit" name="commit" class="btn btn-default"><i class="material-icons">search</i></a></li> -->
         <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Note<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a href="/users/edit">account</a></li>

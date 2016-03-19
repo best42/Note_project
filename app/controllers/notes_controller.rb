@@ -26,16 +26,18 @@ class NotesController < ApplicationController
   def index
     @notes = Note.all
     @note_images = NoteImage.all
-    if params[:search]
-      @noteSearch = Note.search(params[:search])
-      if @noteSearch.hits == []
-        @noteData = "none"
-      else
-        @noteData = @noteSearch
-      end
-    else
-      @noteData = Note.all
-    end
+    @noteSearch = Note.search(params[:search])
+    
+    # if params[:search]
+    #   @noteSearch = Note.search(params[:search])
+    #   if @noteSearch.hits == []
+    #     @noteData = "none"
+    #   else
+    #     @noteData = @noteSearch
+    #   end
+    # else
+    #   @noteData = Note.all
+    # end
     # raise "#{@note_images}"
   end
 
