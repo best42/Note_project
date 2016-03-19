@@ -35,6 +35,10 @@ ActiveRecord::Schema.define(version: 20160318100836) do
     t.integer  "note_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "note_images", ["image_id"], name: "index_note_images_on_image_id"
@@ -50,6 +54,10 @@ ActiveRecord::Schema.define(version: 20160318100836) do
     t.date     "create_note"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "notes", ["user_id"], name: "index_notes_on_user_id"
