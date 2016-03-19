@@ -32,6 +32,10 @@ gem 'searchkick'
 gem 'devise'
 
 gem 'pg'
+
+gem 'capistrano', '~> 3.4.0'
+gem 'capistrano-rails'
+gem 'capistrano-rvm'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
