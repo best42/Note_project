@@ -50,6 +50,7 @@ group :development, :test do
   gem 'byebug'
   gem 'better_errors'
   gem 'railroady'
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :development do

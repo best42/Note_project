@@ -5,59 +5,37 @@
   <li><a href="/notes">Science</a></li>
 </ul>
 
-<%if user_signed_in? %>
-  <div class="navbar-fixed">
-  <nav>
-    <div class="nav-wrapper">
-      <%= link_to "lecture Note", notes_path, class: "brand-logo" %>
-
-      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-
-        <!-- <li>
-          <form action="/notes" method="get">
-            <input type="text" class="form-control" name="search" placeholder="find notes...">
-            <button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i>
-            </button>
-          </form> -->
-        <!-- <div class="form-group"> -->
-          <!-- <div class="search-wrapper card" action="/notes" method="get"> -->
-
-        <!-- </div> -->
-      <li>
-        <form action="/notes" method="get">
-          <li><input type="text" class="form-control" name="search" placeholder="find notes..."></li>
-          <li><button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></li>
-        </form>
-      </li>
-        <!-- <li><a type="submit" name="commit" class="btn btn-default"><i class="material-icons">search</i></a></li> -->
-        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Note<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a href="/users/edit">account</a></li>
-        <li><a href="/contact">Contact Us</a></li>
-        <li><a href=""><%= link_to "Sign Out", destroy_user_session_path, method: :delete %><br></a></li>
-      </ul>
-    </div>
-  </nav>
-  </div>
-
-<% else %>
-
 <div class="navbar-fixed">
 <nav>
   <div class="nav-wrapper">
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
     <%= link_to "lecture Note", notes_path, class: "brand-logo" %>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <li><a href="/notes"><i class="material-icons">search</i></a></li>
+      <li>
+        <form action="/notes" method="get">
+          <li><input type="text" class="form-control input-field col s4" name="search" placeholder="find notes..."></li>
+          <li><button type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">search</i></li>
+        </form>
+      </li>
       <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Note<i class="material-icons right">arrow_drop_down</i></a></li>
-      <li><a href="/contact">Contact Us</a></li>
-      <li><a href="/users/sign_in">Log in</a></li>
+      <%if user_signed_in? %>
+        <li><a href="/users/edit">account</a></li>
+        <li><a href=""><%= link_to "Sign Out", destroy_user_session_path, method: :delete %><br></a></li>
+      <% else %>
+        <li><a href="/users/sign_in">Log in</a></li>
+      <% end %>
     </ul>
   </div>
 </nav>
 </div>
+<ul id="slide-out" class="side-nav">
+  <li><a href="#!">First Sidebar Link</a></li>
+  <li><a href="#!">Second Sidebar Link</a></li>
+</ul>
+<a href="#" data-activates="slide-out" class="button-collapse large"><i class="mdi-navigation-menu"></i></a>
 
-<% end %>
+
 
 <script>
   $(document).ready( function () {
@@ -71,6 +49,5 @@
       alignment: 'left' // Displays dropdown with edge aligned to the left of button
     });
     $(".button-collapse").sideNav();
-    $('#sidebar-nav').sidr();
   });
 </script>

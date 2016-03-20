@@ -24,6 +24,12 @@ test:
   host: localhost
   database: Note_project_test
 
+test:
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+  database: db/test.sqlite3
+
 production:
   <<: *default
   host: localhost
