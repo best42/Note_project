@@ -23,5 +23,5 @@ class NoteImage < ActiveRecord::Base
   has_many :comments
 
   validates_attachment :image, presence: true,
-    content_type: { content_type: ["image/jpg", "image/gif", "image/png"] }
+    content_type: { content_type: ["image/jpg", "image/jpeg", "image/gif", "image/png"] }
 end

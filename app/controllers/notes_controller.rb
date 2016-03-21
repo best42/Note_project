@@ -20,6 +20,7 @@
 
 class NotesController < ApplicationController
   before_action :set_note, only: [:show, :edit, :update, :destroy]
+  # before_action :set_note_image
 
   # GET /notes
   # GET /notes.json
@@ -84,11 +85,17 @@ class NotesController < ApplicationController
       if @note.save
         if params[:images]
           @note.image = params[:images].first
-          @note.save
-          params[:images].each { |ima|
-            @note_image = NoteImage.create(image: ima, note_id: @note.id)
-            @note_image.save
-          }
+          @note.save!
+          note_image_params.each do |ima|
+            @note_image = NoteImage.new()
+            @note_image.image = ima
+            @note_image.note_id = @note.id
+            # @id = @noteimage
+            # @note_image = NoteImage.create(id: @id, image: ima, note_id: @note.id)
+            @note_image.save!
+          end
+          # @note.reload
+        # raise "#{@note.to_json} #{@note.note_images.to_json}"
         end
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
@@ -142,12 +149,17 @@ class NotesController < ApplicationController
       @note = Note.find(params[:id])
     end
 
+    def set_note_image
+      raise params.to_s
+      @noteimage = NoteImage.find(params[:note_image_id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def note_params
       params.require(:note).permit(:title, :description, :subject, :teacher, :rating, :user_id, :create_note, :image, image_attributes: [:id])
     end
 
     def note_image_params
-      params.require(:note).permit(:image_id, :x, :y, :content, :note_id, :image)
+      params[:images]
     end
 end
