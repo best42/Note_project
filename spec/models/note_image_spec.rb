@@ -20,8 +20,9 @@ require 'rails_helper'
 
 RSpec.describe NoteImage, :type => :model do
   before(:each) do
+  @note = Note.first
   @note_image1 = NoteImage.new(content:"How to calculate mean",
-                    note_id: 1,
+                    note_id: @note.id,
                     image_file_name: "pic",
                     image_content_type: "image/jpg")
   end
@@ -32,9 +33,15 @@ RSpec.describe NoteImage, :type => :model do
     expect(@note_image1.save).to be(false)
   end
 
-  it "if user didnot insert x,y,content, it still OK" do
+  it "if user didnot insert x, it still OK" do
     @note_image1.x = ""
+    expect(@note_image1.save).to be(true)
+  end
+  it "if user didnot insert y, it still OK" do
     @note_image1.y = ""
+    expect(@note_image1.save).to be(true)
+  end
+  it "if user didnot insert content, it still OK" do
     @note_image1.content = ""
     expect(@note_image1.save).to be(true)
   end

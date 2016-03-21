@@ -21,30 +21,25 @@ require 'rails_helper'
 
 RSpec.describe Note, :type => :model do
   before(:each) do
-  @note1 = Note.new(title:"Normal Distribution",
-                    description:"About how to build normal distribution graph and calculate sample mean and standard deviation",
+  @user = User.first
+  @note1 = Note.new(user_id: @user.id,
+                    title: "Normal Distribution",
+                    description: "About how to build normal distribution graph and calculate sample mean and standard deviation",
                     subject: "Statistic",
-                    teacher: "Ajarn. L",
-                    user_id: 1)
+                    teacher: "Ajarn. L")
   end
 
-  it "user need to add title,subject,teacher to pass the test" do
+  it "user need to add title to pass the test" do
     @note1.title = ""
-    @note1.subject = ""
-    @note1.teacher = ""
     expect(@note1.save).to be(false)
   end
 
-  it "user need to add subject,teacher to pass the test" do
-    @note1.title = "Normal Distribution"
+  it "user need to add subject pass the test" do
     @note1.subject = ""
-    @note1.teacher = ""
     expect(@note1.save).to be(false)
   end
 
   it "user need to add teacher to pass the test" do
-    @note1.title = "Normal Distribution"
-    @note1.subject = "Statistic"
     @note1.teacher = ""
     expect(@note1.save).to be(false)
   end

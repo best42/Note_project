@@ -26,5 +26,8 @@ class User < ActiveRecord::Base
   has_many :notes
   has_many :comments, dependent: :destroy
 
-  validates :username, presence: true
+  before_save { self.email.downcase! }
+  before_save { self.username.downcase! }
+
+  validates :username, presence: true, uniqueness: { case_sensitive: false }
 end
