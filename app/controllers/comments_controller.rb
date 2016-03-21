@@ -43,9 +43,10 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
+    # @comment = Comment.new()
     @comment.user = current_user
     @comment.noteimage_id = @note_image.id
-
+    # raise "#{@comment.to_json} #{@comment.noteimage_id.to_json}"
     respond_to do |format|
       if @comment.save
         format.html { redirect_to @note, notice: 'Comment was successfully created.' }
@@ -85,6 +86,7 @@ class CommentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
+      raise "#{@comment.to_json}"
     end
     def set_note_image
       @note_image = NoteImage.find(params[:note_image_id])

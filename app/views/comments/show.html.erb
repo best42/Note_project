@@ -5,7 +5,7 @@
   <%= sanitize @comment.content %>
 </p>
 
-<p>
+<!-- <p>
   <strong>X:</strong>
   <%= @comment.x %>
 </p>
@@ -13,21 +13,21 @@
 <p>
   <strong>Y:</strong>
   <%= @comment.y %>
-</p>
+</p> -->
 
 <p>
   <strong>User:</strong>
   <%= @comment.user.username %>
 </p>
 
-<p>
+<!-- <p>
   <strong>Noteimage:</strong>
   <%= @comment.noteimage.id %>
-</p>
+</p> -->
 
 <p>
   <strong>Rating:</strong>
-  <%= @comment.rating %>
+  <div class="star-rating" data-score= <%= comment.rating %> ></div>
 </p>
 
 <%= link_to 'Edit', edit_comment_path(@comment) %> |

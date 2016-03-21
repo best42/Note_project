@@ -66,6 +66,9 @@
         <p><%= sanitize comment.content %></p>
         <div class="star-rating" data-score= <%= comment.rating %> ></div>
         <p><%= comment.user.username %></p>
+        <!-- <% if current_user.id == comment.user %>
+          <%= link_to 'Edit Comment', edit_note_note_image_comment_path(@note,@first_image) %>
+        <% end %> -->
       </div>
       <li class="divider"></li>
     <% end %>
