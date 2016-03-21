@@ -21,13 +21,13 @@ ActiveRecord::Schema.define(version: 20160318100836) do
     t.integer  "x"
     t.integer  "y"
     t.integer  "user_id"
-    t.integer  "noteimage_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "note_image_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.integer  "rating"
   end
 
-  add_index "comments", ["noteimage_id"], name: "index_comments_on_noteimage_id", using: :btree
+  add_index "comments", ["note_image_id"], name: "index_comments_on_note_image_id", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "note_images", force: :cascade do |t|
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20160318100836) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  add_foreign_key "comments", "notes", column: "noteimage_id"
+  add_foreign_key "comments", "note_images"
   add_foreign_key "comments", "users"
   add_foreign_key "note_images", "notes"
   add_foreign_key "notes", "users"

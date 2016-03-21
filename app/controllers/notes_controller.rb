@@ -53,7 +53,7 @@ class NotesController < ApplicationController
   def show
     @note_images = NoteImage.where(note_id: @note.id)
     @first_image = NoteImage.where(note_id: @note.id).first
-    @comments = Comment.where(noteimage_id: @first_image.id).order("created_at DESC")
+    @comments = Comment.where(note_image_id: @first_image.id).order("created_at DESC")
 
     if @comments.blank?
       @avg_review = 0
@@ -127,7 +127,7 @@ class NotesController < ApplicationController
     @note_images = NoteImage.where(note_id: noteId)
     first_image = @note_images.first
     @note_images.each do |note_image|
-      @comments = Comment.where(noteimage_id: first_image)
+      @comments = Comment.where(note_image_id: first_image)
       if @comments != nil?
         @comments.each do |comment|
           comment.destroy

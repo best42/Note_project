@@ -2,15 +2,15 @@
 #
 # Table name: comments
 #
-#  id           :integer          not null, primary key
-#  content      :text
-#  x            :integer
-#  y            :integer
-#  user_id      :integer
-#  noteimage_id :integer
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  rating       :integer
+#  id            :integer          not null, primary key
+#  content       :text
+#  x             :integer
+#  y             :integer
+#  user_id       :integer
+#  note_image_id :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  rating        :integer
 #
 
 class CommentsController < ApplicationController
@@ -43,9 +43,8 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     @comment = Comment.new(comment_params)
-    # @comment = Comment.new()
     @comment.user = current_user
-    @comment.noteimage_id = @note_image.id
+    @comment.note_image_id = @note_image.id
     # raise "#{@comment.to_json} #{@comment.noteimage_id.to_json}"
     respond_to do |format|
       if @comment.save
@@ -63,7 +62,7 @@ class CommentsController < ApplicationController
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @note, notice: 'Comment was successfully updated.' }
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }
@@ -86,17 +85,18 @@ class CommentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
-      raise "#{@comment.to_json}"
     end
+
     def set_note_image
       @note_image = NoteImage.find(params[:note_image_id])
     end
+
     def set_note
       @note = Note.find(params[:note_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comment_params
-      params.require(:comment).permit(:content, :x, :y, :user_id, :rating, :noteimage_id)
+      params.require(:comment).permit(:content, :x, :y, :user_id, :rating, :note_image_id)
     end
 end

@@ -5,10 +5,9 @@ class CreateComments < ActiveRecord::Migration
       t.integer :x
       t.integer :y
       t.references :user, index: true, foreign_key: true
-      t.references :noteimage, index: true
+      t.references :note_image, index: true, foreign_key: true
 
       t.timestamps null: false
     end
-    add_foreign_key :comments, :noteimage, column: :noteimage_id
   end
 end
