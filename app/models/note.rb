@@ -33,8 +33,6 @@ class Note < ActiveRecord::Base
     end
   end
 
-  validates_attachment :image, presence: true,
-    content_type: { content_type: ["image/jpg", "image/gif", "image/png"] }
   validates :title, presence: true
   validates :subject, presence: true
   validates :teacher, presence: true

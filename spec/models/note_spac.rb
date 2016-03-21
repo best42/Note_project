@@ -25,44 +25,27 @@ RSpec.describe Note, :type => :model do
                     description:"About how to build normal distribution graph and calculate sample mean and standard deviation",
                     subject: "Statistic",
                     teacher: "Ajarn. L",
-                    user_id: 1,
-                    image_file_name: "pic.jpg",
-                    image_content_type: "image/jpg")
+                    user_id: 1)
   end
 
-  it "user need to add title,subject,teacher,image to pass the test" do
+  it "user need to add title,subject,teacher to pass the test" do
     @note1.title = ""
     @note1.subject = ""
     @note1.teacher = ""
-    @note1.image_file_name = ""
-    @note1.image_content_type = ""
     expect(@note1.save).to be(false)
   end
 
-  it "user need to add subject,teacher,image to pass the test" do
+  it "user need to add subject,teacher to pass the test" do
     @note1.title = "Normal Distribution"
     @note1.subject = ""
     @note1.teacher = ""
-    @note1.image_file_name = ""
-    @note1.image_content_type = ""
     expect(@note1.save).to be(false)
   end
 
-  it "user need to add teacher,image to pass the test" do
+  it "user need to add teacher to pass the test" do
     @note1.title = "Normal Distribution"
     @note1.subject = "Statistic"
     @note1.teacher = ""
-    @note1.image_file_name = ""
-    @note1.image_content_type = ""
-    expect(@note1.save).to be(false)
-  end
-
-  it "user need to add image to pass the test" do
-    @note1.title = "Normal Distribution"
-    @note1.subject = "Statistic"
-    @note1.teacher = "Ajarn. L"
-    @note1.image_file_name = ""
-    @note1.image_content_type = ""
     expect(@note1.save).to be(false)
   end
 

@@ -27,7 +27,7 @@ class NotesController < ApplicationController
     @notes = Note.all
     @note_images = NoteImage.all
     @noteSearch = Note.search(params[:search])
-    
+
     # if params[:search]
     #   @noteSearch = Note.search(params[:search])
     #   if @noteSearch.hits == []
@@ -39,6 +39,7 @@ class NotesController < ApplicationController
     #   @noteData = Note.all
     # end
     # raise "#{@note_images}"
+
   end
 
   def search
@@ -89,9 +90,6 @@ class NotesController < ApplicationController
             @note_image.save
           }
         end
-        # @note_image = NoteImage.new(note_image_params)
-        # @note_image.note_id = @note.id
-        # @note_image.save
         format.html { redirect_to @note, notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
@@ -119,18 +117,18 @@ class NotesController < ApplicationController
   # DELETE /notes/1.json
   def destroy
     noteId = @note.id
-    @note.destroy
     @note_images = NoteImage.where(note_id: noteId)
     first_image = @note_images.first
     @note_images.each do |note_image|
-      note_image.destroy
-      @comments = Comment.where(note_image_id: first_image)
+      @comments = Comment.where(noteimage_id: first_image)
       if @comments != nil?
         @comments.each do |comment|
           comment.destroy
         end
+      note_image.destroy
       end
     end
+    @note.destroy
 
     respond_to do |format|
       format.html { redirect_to notes_url, notice: 'Note was successfully destroyed.' }

@@ -2,22 +2,22 @@
 
 <p>
   <strong>Title:</strong>
-  <%= @note.title %>
+  <%= sanitize @note.title %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @note.description %>
+  <%= sanitize @note.description %>
 </p>
 
 <p>
   <strong>Subject:</strong>
-  <%= @note.subject %>
+  <%= sanitize @note.subject %>
 </p>
 
 <p>
   <strong>Teacher:</strong>
-  <%= @note.teacher %>
+  <%= sanitize @note.teacher %>
 </p>
 
 <div class="star-rating" data-score= <%= @avg_review %> ></div>
@@ -33,32 +33,21 @@
   <%= @note.create_note %>
 </p>
 
-<div class="slider" style="height: 800px;">
-    <ul class="slides">
-        <% @note_images.each do |note_image| %>
-          <li>
-            <script>
-              console.log(<%=note_image.id%>)
-\           </script>
-            <%= image_tag note_image.image.url, class: "materialboxed" %>
-          </li>
-        <% end %>
-    </ul>
-</div>
 
-<div class="container portfolio">
-  <div class="row">
-    <div class="col s12 m12 l12 portfolio-holder">
-      <script>
-        console.log(<%= @first_image.id %>)
-      </script>
-      <% @note_images.each do |note_image| %>
-        <%= image_tag note_image.image.url, class: "materialboxed", style:"height:400px;width:500px;" %>
-      <% end %>
-    </div>
-  </div>
+<div class="row">
+    <% @note_images.each do |note_image| %>
+      <div class="col s12 m6">
+        <div class="card">
+          <div class="card-image" class="img_fix">
+            <%= image_tag note_image.image.url, class: "materialboxed", style: "max-height 600px;" %>
+          </div>
+          <div class="card-action">
+            <%= note_image.image_file_name %>
+          </div>
+        </div>
+      </div>
+    <% end %>
 </div>
-
 
 <div class="carousel">
   <% @note_images.each do |note_image| %>
@@ -66,7 +55,7 @@
         <%= image_tag note_image.image.url, class: "carousel-item"%>
       </li>
   <% end %>
-</div><br>
+</div>
 
 <div class="col-md-7 col-md-offset-1">
   <% if @comments.blank? %>
@@ -74,7 +63,7 @@
   <% else %>
     <% @comments.each do |comment| %>
       <div class="reviews">
-        <p><%= comment.content %></p>
+        <p><%= sanitize comment.content %></p>
         <div class="star-rating" data-score= <%= comment.rating %> ></div>
         <p><%= comment.user.username %></p>
       </div>
@@ -84,6 +73,7 @@
 </div><br>
 
 <%= link_to 'Add Comment', new_note_note_image_comment_path(@note,@first_image) %>
+<p></p>
 
 <% if current_user.id == @note.user.id %>
   <%= link_to 'Edit', edit_note_path(@note) %> |
