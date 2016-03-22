@@ -89,11 +89,8 @@ class NotesController < ApplicationController
             @note_image = NoteImage.new()
             @note_image.image = ima
             @note_image.note_id = @note.id
-            # @id = @noteimage
-            # @note_image = NoteImage.create(id: @id, image: ima, note_id: @note.id)
             @note_image.save!
           end
-          # @note.reload
         # raise "#{@note.to_json} #{@note.note_images.to_json}"
         end
         format.html { redirect_to @note, notice: 'Note was successfully created.' }

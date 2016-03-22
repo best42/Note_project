@@ -66,7 +66,7 @@
         <p><%= sanitize comment.content %></p>
         <div class="star-rating" data-score= <%= comment.rating %> ></div>
         <p><%= comment.user.username %></p>
-        <% if current_user.id == comment.user_id %>
+        <% if current_user && current_user.id == comment.user_id %>
           <%= link_to 'Edit Comment', edit_note_note_image_comment_path(@note,@first_image,comment) %>
         <% end %>
       </div>
@@ -78,7 +78,7 @@
 <%= link_to 'Add Comment', new_note_note_image_comment_path(@note,@first_image) %>
 <p></p>
 
-<% if current_user.id == @note.user.id %>
+<% if current_user && current_user.id == @note.user.id %>
   <%= link_to 'Edit', edit_note_path(@note) %> |
   <%= link_to 'Destroy', @note, method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>

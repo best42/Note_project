@@ -20,6 +20,7 @@ RSpec.describe Comment, :type => :model do
   @user = User.first
   @noteimage = NoteImage.first
   @comment1 = Comment.new(content:"This note is good",
+                    rating: 1,
                     note_image_id: @noteimage.id,
                     user_id: @user.id)
   end
@@ -28,6 +29,21 @@ RSpec.describe Comment, :type => :model do
     @comment1.content = ""
     expect(@comment1.save).to be(false)
   end
+
+  # it "rating cannot be less than 0 or greater than 5" do
+  #   @comment1.rating = 6
+  #   expect(@comment1.save).to be(false)
+  # end
+  #
+  # it "rating can be blank" do
+  #   @comment1.rating = ""
+  #   expect(@comment1.save).to be(true)
+  # end
+  #
+  # it "rating can be 1-5" do
+  #   @comment1.rating = 1
+  #   expect(@comment1.save).to be(true)
+  # end
 
   it "if user didnot insert x it still OK" do
     @comment1.x = ""

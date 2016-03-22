@@ -17,7 +17,8 @@ note1 = Note.create(title:"Global Warming",
                   teacher: "Ajarn. Laine",
                   image_file_name: "w2.jpg",
                   image_content_type: "image/jpg",
-                  user_id: user1.id)
+                  user_id: user1.id,
+                  rating: 1)
 
 note_image1 = NoteImage.create(content:"Global warming diagram",
                   note_id: user1.id,
@@ -25,5 +26,6 @@ note_image1 = NoteImage.create(content:"Global warming diagram",
                   image_content_type: "image/jpg")
 
 comment1 = Comment.create(content:"This note is clear",
+                  rating: 1,
                   note_image_id: note_image1.id,
                   user_id: user1.id)
